@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public abstract class Piece
 {
 
-    private int[] initialPosition;
-    private int[] currentPosition;
-    private String color;
-    private String name;
-    private String initial;
-    private ArrayList<Object> moves;
+    protected int[] initialPosition;
+    protected int[] currentPosition;
+    protected String color;
+    protected String name;
+    protected String initial;
+    protected ArrayList<Object> moves;
 
     public Piece(int[] pos, String color, String name, String initial) {
         this.initialPosition = this.currentPosition = pos;
@@ -56,5 +56,5 @@ public abstract class Piece
     }
 
     // move methods
-    public abstract void move();
+    public abstract boolean isValidMove (int[] newPos) ;
 }

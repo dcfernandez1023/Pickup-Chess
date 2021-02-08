@@ -18,6 +18,70 @@ public class ChessGame {
         initializeGame();
     }
 
+    /*
+        * moves a piece on the board from curPos to newPos
+        * throws exception if newPos is invalid or it is not the turn of the specified player
+    */
+    public void makeMove(int player, int[] curPos, int[] newPos) throws Exception {
+        if(player != this.playerTurn) {
+            throw new Exception("InvalidMove: Wrong player's move");
+        }
+        Piece piece = this.board[curPos[0]][curPos[1]];
+        if(this.isValidPlacement(newPos) && piece.isValidMove(newPos)) {
+            this.board[newPos[0]][newPos[1]] = piece;
+            piece.setCurrentPosition(newPos[0], newPos[1]);
+            if(this.playerTurn == 0) {
+                this.playerTurn = 1;
+            }
+            else if(this.playerTurn == 1) {
+                this.playerTurn = 0;
+            }
+        }
+        else {
+            throw new Exception("InvalidMove: Invalid movement for " + piece.getName());
+        }
+    }
+
+    public void setBoard(Piece[][] board) {
+        this.board = board;
+    }
+
+    public void setEatenWhitePieces(ArrayList<Piece> eatenWhitePieces) {
+        this.eatenWhitePieces = eatenWhitePieces;
+    }
+
+    public void setEatenBlackPieces(ArrayList<Piece> eatenBlackPieces) {
+        this.eatenBlackPieces = eatenBlackPieces;
+    }
+
+    public void setPlayerTurn(int playerTurn) {
+        this.playerTurn = playerTurn;
+    }
+
+    public void setPieceFactory(PieceFactory pieceFactory) {
+        this.pieceFactory = pieceFactory;
+    }
+
+    public Piece[][] getBoard() {
+        return this.board;
+    }
+
+    public ArrayList<Piece> getEatenWhitePieces() {
+        return this.eatenWhitePieces;
+    }
+
+    public ArrayList<Piece> getEatenBlackPieces() {
+        return this.eatenBlackPieces;
+    }
+
+    public int getPlayerTurn() {
+        return this.playerTurn;
+    }
+
+    public PieceFactory getPieceFactory() {
+        return this.pieceFactory;
+    }
+
     // prints board
     public void printBoard() {
         String display = "";
@@ -29,7 +93,9 @@ public class ChessGame {
                 else
                     display += row[j].getInitial() + " ";
             }
-            display += "\n";
+            if(i != this.board.length - 1) {
+                display += "\n";
+            }
         }
         System.out.println(display);
     }
@@ -52,5 +118,13 @@ public class ChessGame {
             int[] pos = piece.getInitialPosition();
             this.board[pos[0]][pos[1]] = piece;
         }
+    }
+
+    // returns true if there is no piece on the specified position, false otherwise
+    private boolean isValidPlacement(int[] newPos) {
+        if(this.board[newPos[0]][newPos[1]] == null) {
+            return true;
+        }
+        return false;
     }
 }

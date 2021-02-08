@@ -7,7 +7,7 @@ public class ChessPiece extends Piece {
     }
 
     @Override
-    public void move() {
-
+    public boolean isValidMove (int[] newPos)  {
+        return true;
     }
 }
