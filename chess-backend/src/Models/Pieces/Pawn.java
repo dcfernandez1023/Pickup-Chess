@@ -1,7 +1,7 @@
 package Models.Pieces;
 
 public class Pawn extends Piece {
-    public Pawn(int[] pos, String color, String name, String initial) {
+    public Pawn(int[] pos, int color, String name, String initial) {
         super(pos, color, name, initial);
     }
 

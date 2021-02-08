@@ -1,7 +1,7 @@
 package Models.Pieces;
 
 public class Rook extends Piece {
-    public Rook(int[] pos, String color, String name, String initial) {
+    public Rook(int[] pos, int color, String name, String initial) {
         super(pos, color, name, initial);
     }
 

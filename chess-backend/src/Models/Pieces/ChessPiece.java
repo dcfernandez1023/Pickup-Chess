@@ -2,7 +2,7 @@ package Models.Pieces;
 
 public class ChessPiece extends Piece {
 
-    public ChessPiece(int[] pos, String color, String name, String initial) {
+    public ChessPiece(int[] pos, int color, String name, String initial) {
         super(pos, color, name, initial);
     }
 

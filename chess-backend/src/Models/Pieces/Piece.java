@@ -7,12 +7,12 @@ public abstract class Piece
 
     protected int[] initialPosition;
     protected int[] currentPosition;
-    protected String color;
+    protected int color;
     protected String name;
     protected String initial;
     protected ArrayList<Object> moves;
 
-    public Piece(int[] pos, String color, String name, String initial) {
+    public Piece(int[] pos, int color, String name, String initial) {
         this.initialPosition = this.currentPosition = pos;
         this.color = color;
         this.name = name;
@@ -28,7 +28,7 @@ public abstract class Piece
         this.currentPosition[0] = x;
         this.currentPosition[1] = y;
     }
-    public void setColor(String color) {
+    public void setColor(int color) {
         this.color = color;
     }
     public void setName(String name) {
@@ -45,7 +45,7 @@ public abstract class Piece
     public int[] getCurrentPosition() {
         return this.currentPosition;
     }
-    public String getColor() {
+    public int getColor() {
         return this.color;
     }
     public String getName() {

@@ -1,7 +1,7 @@
 package Models.Pieces;
 
 public class Horse extends Piece {
-    public Horse(int[] pos, String color, String name, String initial) {
+    public Horse(int[] pos, int color, String name, String initial) {
         super(pos, color, name, initial);
     }
 

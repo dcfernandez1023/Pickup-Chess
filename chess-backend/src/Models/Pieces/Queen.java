@@ -1,7 +1,7 @@
 package Models.Pieces;
 
 public class Queen extends Piece {
-    public Queen(int[] pos, String color, String name, String initial)
+    public Queen(int[] pos, int color, String name, String initial)
     {
         super(pos, color, name, initial);
     }

@@ -23,10 +23,10 @@ public class ChessGame {
         * throws exception if newPos is invalid or it is not the turn of the specified player
     */
     public void makeMove(int player, int[] curPos, int[] newPos) throws Exception {
-        if(player != this.playerTurn) {
+        Piece piece = this.board[curPos[0]][curPos[1]];
+        if(player != this.playerTurn || player != piece.getColor()) {
             throw new Exception("InvalidMove: Wrong player's move");
         }
-        Piece piece = this.board[curPos[0]][curPos[1]];
         if(this.isValidPlacement(newPos) && piece.isValidMove(newPos)) {
             this.board[newPos[0]][newPos[1]] = piece;
             piece.setCurrentPosition(newPos[0], newPos[1]);

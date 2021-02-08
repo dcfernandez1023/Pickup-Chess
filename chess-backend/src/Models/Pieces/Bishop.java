@@ -1,7 +1,7 @@
 package Models.Pieces;
 
 public class Bishop extends Piece {
-    public Bishop(int[] pos, String color, String name, String initial) {
+    public Bishop(int[] pos, int color, String name, String initial) {
         super(pos, color, name, initial);
     }
 
