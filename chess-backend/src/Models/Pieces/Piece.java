@@ -2,8 +2,7 @@ package Models.Pieces;
 
 import java.util.ArrayList;
 
-public abstract class Piece
-{
+public abstract class Piece {
 
     protected int[] initialPosition;
     protected int[] currentPosition;
@@ -56,5 +55,11 @@ public abstract class Piece
     }
 
     // move methods
-    public abstract boolean isValidMove (int[] newPos) ;
+    public abstract boolean isValidMove (int[] newPos, Piece[][] board);
+    protected boolean isOutOfBoard(int[] newPos) {
+        if(newPos[0] < 0 || newPos[0] > 7 || newPos[1] < 0 || newPos[1] > 7) {
+            return true;
+        }
+        return false;
+    }
 }

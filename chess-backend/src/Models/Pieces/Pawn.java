@@ -6,7 +6,7 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public boolean isValidMove(int[] newPos) {
+    public boolean isValidMove(int[] newPos, Piece[][] board) {
         return false;
     }
 }

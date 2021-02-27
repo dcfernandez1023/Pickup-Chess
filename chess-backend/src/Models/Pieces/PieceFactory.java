@@ -33,6 +33,9 @@ public class PieceFactory {
         pieces.add(whiteHorse2);
         pieces.add(whiteRook2);
         for(int i = 0; i < 8; i++) {
+            if(i == 0) {
+                continue;
+            }
             Piece whitePawn = new ChessPiece(new int[]{1, i}, 0, "Pawn", "P");
             pieces.add(whitePawn);
         }

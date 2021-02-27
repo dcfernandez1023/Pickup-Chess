@@ -8,6 +8,9 @@ public class ControllerDriver {
 
     public static void main (String[] args) {
         GameController game = new GameController();
+        System.out.println("## Starting Board ##");
+        game.displayBoard();
+        System.out.println("----------------------");
         while(true) {
             int player = game.getPlayerTurn();
             if(player == 0) {

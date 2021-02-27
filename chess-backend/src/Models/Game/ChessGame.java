@@ -5,6 +5,7 @@ import Models.Pieces.PieceFactory;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ChessGame {
 
@@ -20,14 +21,18 @@ public class ChessGame {
 
     /*
         * moves a piece on the board from curPos to newPos
-        * throws exception if newPos is invalid or it is not the turn of the specified player
+        * throws exception if the move is invalid or it is not the turn of the specified player
     */
     public void makeMove(int player, int[] curPos, int[] newPos) throws Exception {
         Piece piece = this.board[curPos[0]][curPos[1]];
+        if(piece == null) {
+            throw new Exception("InvalidMove: No piece exists at position: " + Arrays.toString(curPos));
+        }
+        this.logMove(curPos, newPos);
         if(player != this.playerTurn || player != piece.getColor()) {
             throw new Exception("InvalidMove: Wrong player's move");
         }
-        if(this.isValidPlacement(newPos) && piece.isValidMove(newPos)) {
+        if(this.isValidPlacement(newPos) && piece.isValidMove(newPos, this.board)) {
             this.board[newPos[0]][newPos[1]] = piece;
             piece.setCurrentPosition(newPos[0], newPos[1]);
             if(this.playerTurn == 0) {
@@ -42,6 +47,7 @@ public class ChessGame {
         }
     }
 
+    // getters + setters
     public void setBoard(Piece[][] board) {
         this.board = board;
     }
@@ -120,11 +126,28 @@ public class ChessGame {
         }
     }
 
-    // returns true if there is no piece on the specified position, false otherwise
+    // returns true if there is no piece of the same color on the specified position, false otherwise
     private boolean isValidPlacement(int[] newPos) {
         if(this.board[newPos[0]][newPos[1]] == null) {
             return true;
         }
+        if(this.board[newPos[0]][newPos[1]] != null && this.board[newPos[0]][newPos[1]].getColor() != this.playerTurn) {
+            return true;
+        }
         return false;
+    }
+
+    private void logMove(int[] oldPos, int newPos[]) {
+        Piece pieceMoving = this.board[oldPos[0]][oldPos[1]];
+        Piece pieceTo = this.board[newPos[0]][newPos[1]];
+        String log = "# ATTEMPTING TO MOVE: " +
+                      pieceMoving.getName() +
+                      (pieceMoving.getColor() == 0 ? " (white)" : " (black)") +
+                      " from " + Arrays.toString(oldPos) +
+                      " to " + Arrays.toString(newPos) +
+                      " where " +
+                      (pieceTo == null ? null : pieceTo.getName() + (pieceTo.getColor() == 0 ? " (white)" : " (black)")) +
+                      " resides.";
+        System.out.println(log);
     }
 }
