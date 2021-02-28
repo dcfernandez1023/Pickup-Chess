@@ -27,15 +27,15 @@ public class Rook extends Piece {
             return false;
         }
         // CASE 3
-        // check if piece is blocking it in horizontal direction
-        int xStarting = this.currentPosition[0];
-        int xEnding = newPos[0];
-        int yStarting = this.currentPosition[1];
-        int yEnding = newPos[1];
-        if(xStarting < xEnding) {
-            for(int i = xStarting; i <= xEnding; i++) {
+        // check if piece is blocking it in vertical direction
+        int rowStarting = this.currentPosition[0];
+        int rowEnding = newPos[0];
+        int colStarting = this.currentPosition[1];
+        int colEnding = newPos[1];
+        if(rowStarting < rowEnding) {
+            for(int i = rowStarting; i <= rowEnding; i++) {
                 Piece pieceAtCurrentPos = board[this.currentPosition[0]][i];
-                if(i == xEnding && pieceAtCurrentPos != null && this.color == pieceAtCurrentPos.color) {
+                if(i == rowEnding && pieceAtCurrentPos != null && this.color == pieceAtCurrentPos.color) {
                     return false;
                 }
                 if(pieceAtCurrentPos != null) {
@@ -43,10 +43,10 @@ public class Rook extends Piece {
                 }
             }
         }
-        else if(xStarting > xEnding) {
-            for(int i = xStarting; i >= xEnding; i--) {
+        else if(rowStarting > rowEnding) {
+            for(int i = rowStarting; i >= rowEnding; i--) {
                 Piece pieceAtCurrentPos = board[this.currentPosition[0]][i];
-                if(i == xEnding && pieceAtCurrentPos != null && this.color == pieceAtCurrentPos.color) {
+                if(i == rowEnding && pieceAtCurrentPos != null && this.color == pieceAtCurrentPos.color) {
                     return false;
                 }
                 if(pieceAtCurrentPos != null) {
@@ -55,22 +55,22 @@ public class Rook extends Piece {
             }
         }
 
-        // check if piece is blocking it in the vertical direction
-        if(yStarting < yEnding) {
-            for(int i = yStarting; i <= yEnding; i++) {
+        // check if piece is blocking it in the horizontal direction
+        if(colStarting < colEnding) {
+            for(int i = colStarting; i <= colEnding; i++) {
                 Piece pieceAtCurrentPos = board[i][this.currentPosition[1]];
-                if(i == yEnding && pieceAtCurrentPos != null && this.color == pieceAtCurrentPos.color) {
+                if(i == colEnding && pieceAtCurrentPos != null && this.color == pieceAtCurrentPos.color) {
                     return false;
                 }
-                if(pieceAtCurrentPos != null && i != yEnding) {
+                if(pieceAtCurrentPos != null && i != colEnding) {
                     return false;
                 }
             }
         }
-        else if(yStarting > yEnding) {
-            for(int i = yStarting; i >= yEnding; i--) {
+        else if(colStarting > colEnding) {
+            for(int i = colStarting; i >= colEnding; i--) {
                 Piece pieceAtCurrentPos = board[i][this.currentPosition[1]];
-                if(i == yEnding && pieceAtCurrentPos != null && this.color == pieceAtCurrentPos.color) {
+                if(i == colEnding && pieceAtCurrentPos != null && this.color == pieceAtCurrentPos.color) {
                     return false;
                 }
                 if(pieceAtCurrentPos != null) {
